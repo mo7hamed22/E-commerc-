@@ -1,0 +1,16 @@
+<input [(ngModel)]="name" type="text" class="form-control" #input> 
+        {{name}}
+
+  <input class="btn btn-primary" 
+  type="button" value="clickMe" (click)="display()">
+      
+  <div class="bg-success" *ngIf="isTrue">
+      hello from true color
+
+  </div>
+
+
+  <div class="bg-danger" *ngIf="!isTrue">
+      hello from false color
+
+  </div>

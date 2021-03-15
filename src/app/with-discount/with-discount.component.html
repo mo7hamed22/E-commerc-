@@ -1,0 +1,27 @@
+<h3 class="btn btn-danger">Products Have Discount</h3>
+
+<div class="row mt-4 ">
+
+    <div class="container d-flex justify-content-center" >
+        <!-- <h1 [ngStyle]="style_obj">{{storeName}}</h1> -->
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Img</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of productHaveDiscount">
+                    <th><img [src]="product.img" width="200px"></th>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.Quantity}}</td>
+                    <td>{{ product.Price}}</td>     
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

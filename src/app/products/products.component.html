@@ -1,0 +1,109 @@
+<div class="container p-2">
+<button class="btn btn-primary p-1 m-1" (click)="goToProductsWithDiscount()">Go to products with Discount </button> 
+<button class="btn btn-info p-1 m-1" (click)="goToProductsWithoutDiscount()">Go to Products Without Discount</button> 
+</div>
+<router-outlet></router-outlet> 
+
+<div class="row">
+    <div class="col btn">
+<!-- <h1 [ngStyle]="style_obj">{{storeName}}</h1> -->
+</div>
+
+<!-- category -->
+<!-- <div class="col">
+<div>
+    <label for="category">Choose Your Category:</label>
+<select name="categories" >
+    <option *ngFor="let category of categoryList" 
+    [value]="category.categoryName" >
+  {{category.categoryName}}
+</option>
+  
+</select>
+</div>
+</div> -->
+</div>
+
+
+
+<div class="row">
+    <div class="col">
+<div class="d-flex flex-column m-4">
+
+<h1 [ngStyle]="style_obj">{{productList[0]['name']|uppercase }}</h1>
+
+<img [src]="productList[0]['img']" width="200px" >
+<h3 >{{productList[0]['Price']| currency:'EUR'}}</h3>
+
+<h3 *ngIf="discount==discountEnum.value2">
+    We offer an explicit discount of {{discount|percent}}</h3>
+
+<!-- <p [style.color]="'red'" >products works!</p> -->
+</div>
+</div>
+<div class="col">
+    <div class="d-flex flex-column m-4">
+    
+    <h1 [ngStyle]="style_obj">{{productList[1]['name']|uppercase }}</h1>
+    
+    <img [src]="productList[1]['img']" width="200px" >
+    <h3 >{{productList[1]['Price']| currency:'EUR' }}</h3>
+    
+    <h3 *ngIf="discount==discountEnum.value2">
+        We offer an explicit discount of {{discountEnum.value3|percent}}</h3>
+    
+    <!-- <p [style.color]="'red'" >products works!</p> -->
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- //table -->
+<div class="row mt-4">
+    <div class="container d-flex justify-content-center" *ngIf="!isPurchased">
+        <!-- <h1 [ngStyle]="style_obj">{{storeName}}</h1> -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Img</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of productList">
+                    <th><img [src]="product.img" width="200px"></th>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.Quantity}}</td>
+                    <td>{{ product.Price}}</td>     
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- input -->
+<div class="row">
+<div class="col-6">
+    <input [(ngModel)]="name" type="text" class="form-control" > 
+        {{name}}
+</div>
+</div>
+<div class="row">
+    <div class="col-6">
+<div *ngIf="isPurchased" >
+{{'Thanks for purchasing for our store ' + name }}
+</div>
+</div>
+<div class="col-6">
+    <input class="btn btn-primary" type="button" value="purchash" (click)="displayTable()">
+</div>
+</div>
+
+<button (click)="sendProducts()">Send Data To APP</button>

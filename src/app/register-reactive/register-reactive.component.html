@@ -1,0 +1,85 @@
+<div class="container-fluid mb-5">
+    <!-- {{register.value|json}} -->
+    {{registerForm.value | json}}
+    <form [formGroup]="registerForm">
+
+     <!-- Email  -->
+     <div class="form-group">
+    <label class="badge-dark p-2">Email address</label>
+    <input [class.is-invalid]="email.invalid &&email.touched"
+    formControlName=email   class="form-control"  
+     placeholder="Enter email" 
+     email="true"    pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+
+     
+     <div *ngIf="email.errors &&(email.invalid || email.touched)">
+      <small class="text-danger" *ngIf="email.errors.required&&email.touched">Email is required</small>
+      <small class="text-danger" *ngIf="email.errors.pattern">Email Should have @ex.xx</small>   
+  </div>
+  </div>
+    
+ 
+  <!-- UserName -->
+    <div class="form-group">
+       <label class="badge-dark p-1">User Name</label>
+        <input [class.is-invalid]="userName.invalid && userName.touched"  
+        pattern="^[A-Za-z.\s_-]+$" 
+        type="text" 
+        formControlName=userName class="form-control"  placeholder="User Name">
+        <div *ngIf="userName.errors &&(userName.invalid || userName.touched)">
+          <small class="text-danger" *ngIf="userName.errors.required&&userName.touched">
+            userName is required</small>
+          <small class="text-danger" *ngIf="userName.errors.pattern ">
+            Must Contains only upper or lower chars At Least 4 chars</small> 
+            
+      </div>
+      </div>
+    <!-- Password1 -->
+    <div class="form-group">
+ <label class="badge-dark p-2" for="exampleInputPassword1">Password</label>
+      <input type="password" formControlName=password name="password" class="form-control"
+      [class.is-invalid]="password.invalid && password.touched"
+      placeholder="Password">
+      <small class="text-danger" [class.d-none]="password.valid ||password.untouched"
+      >Password is Required </small>
+    
+     
+    </div>
+    <!-- Confirm Password -->
+    <div class="form-group">
+ <label class="badge-dark p-2"  >Confirm Password</label>
+        <input type="password" formControlName=confirmPassword   class="form-control"  required    
+         placeholder="Confirm Password"
+         [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" >
+
+         <small class="text-danger" 
+        [class.d-none]="!confirmPassword.errors || confirmPassword.untouched"
+        >Confirm Password should Entered</small>
+        <!-- <small class="text-danger" [class.d-none]="!matchedPassword" >
+          Password Should Matched
+        </small> -->
+      
+    </div>
+    <!-- {{matchedPassword}} -->
+    <!-- Select -->
+ <div class="form-group align-items-center" > 
+  <label class="badge-dark btn p-2 mr-sm-2">Where You Hear About Us</label>
+   <select class="custom-select" (change)="funcHearFrom($event)" formControlName="hearFrom">
+
+            <option  value="">Select Choice</option>
+            <option   *ngFor="let data of info" [ngValue]=info
+             >
+              {{data}}
+            </option>    
+          </select>
+         
+</div>
+<button type="submit"
+class="btn-lg btn-primary " 
+ >Register</button>
+    
+  </form>
+  <button type="button" 
+  class="btn-lg btn-danger float-right" 
+ (click)="getDataFromApi()" >Get Data</button>
+</div>
